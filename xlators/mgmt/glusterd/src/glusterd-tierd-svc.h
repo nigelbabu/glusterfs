@@ -13,30 +13,23 @@
 
 #include "glusterd-svc-mgmt.h"
 
-
 typedef struct glusterd_tierdsvc_ glusterd_tierdsvc_t;
 
 struct glusterd_tierdsvc_ {
-        glusterd_svc_t          svc;
-        gf_store_handle_t      *handle;
+  glusterd_svc_t svc;
+  gf_store_handle_t *handle;
 };
 
-void
-glusterd_tierdsvc_build (glusterd_svc_t *svc);
+void glusterd_tierdsvc_build(glusterd_svc_t *svc);
 
-int
-glusterd_tierdsvc_init (void *data);
+int glusterd_tierdsvc_init(void *data);
 
-int
-glusterd_tierdsvc_manager (glusterd_svc_t *svc, void *data, int flags);
+int glusterd_tierdsvc_manager(glusterd_svc_t *svc, void *data, int flags);
 
-int
-glusterd_tierdsvc_start (glusterd_svc_t *svc, int flags);
+int glusterd_tierdsvc_start(glusterd_svc_t *svc, int flags);
 
-int
-glusterd_tierdsvc_reconfigure (void *data);
+int glusterd_tierdsvc_reconfigure(void *data);
 
-int
-glusterd_tierdsvc_restart ();
+int glusterd_tierdsvc_restart();
 
 #endif

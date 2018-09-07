@@ -10,12 +10,11 @@
 #ifndef _MARKER_COMMON_H
 #define _MARKER_COMMON_H
 
-#include "xlator.h"
 #include "marker.h"
+#include "xlator.h"
 
-int32_t
-marker_force_inode_ctx_get (inode_t *, xlator_t *, marker_inode_ctx_t **);
+int32_t marker_force_inode_ctx_get(inode_t *, xlator_t *,
+                                   marker_inode_ctx_t **);
 
-int
-marker_filter_quota_xattr (dict_t *, char *, data_t *, void *);
+int marker_filter_quota_xattr(dict_t *, char *, data_t *, void *);
 #endif

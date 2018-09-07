@@ -12,14 +12,14 @@
 #define _GF_UNITTEST_H_
 
 #ifdef UNIT_TESTING
+#include <cmocka.h>
+#include <cmocka_pbc.h>
+#include <setjmp.h>
 #include <stdarg.h>
 #include <stddef.h>
-#include <setjmp.h>
-#include <cmocka_pbc.h>
-#include <cmocka.h>
 
-extern void mock_assert(const int result, const char* const expression,
-                        const char * const file, const int line);
+extern void mock_assert(const int result, const char *const expression,
+                        const char *const file, const int line);
 
 // Change GF_CALLOC and GF_FREE to use
 // cmocka memory allocation versions
@@ -30,16 +30,16 @@ extern void mock_assert(const int result, const char* const expression,
 #define GF_FREE test_free
 
 /* Catch intended assert()'s while unit-testing */
-extern void mock_assert(const int result, const char* const expression,
-                        const char * const file, const int line);
+extern void mock_assert(const int result, const char *const expression,
+                        const char *const file, const int line);
 
 #undef assert
-#define assert(expression) \
-            mock_assert((int)(expression), #expression, __FILE__, __LINE__);
+#define assert(expression)                                                     \
+  mock_assert((int)(expression), #expression, __FILE__, __LINE__);
 #endif
 #else
 #define REQUIRE(p) /**/
-#define ENSURE(p) /**/
+#define ENSURE(p)  /**/
 #endif
 
 #endif /* _GF_UNITTEST */

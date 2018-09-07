@@ -11,14 +11,12 @@
 #ifndef QUOTAD_HELPERS_H
 #define QUOTAD_HELPERS_H
 
-#include "rpcsvc.h"
 #include "quota.h"
 #include "quotad-aggregator.h"
+#include "rpcsvc.h"
 
-void
-quotad_aggregator_free_state (quotad_aggregator_state_t *state);
+void quotad_aggregator_free_state(quotad_aggregator_state_t *state);
 
-call_frame_t *
-quotad_aggregator_get_frame_from_req (rpcsvc_request_t *req);
+call_frame_t *quotad_aggregator_get_frame_from_req(rpcsvc_request_t *req);
 
 #endif

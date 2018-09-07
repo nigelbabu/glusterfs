@@ -15,9 +15,9 @@
 #ifndef _CLOUDSYNC_AUTOGEN_FOPS_H
 #define _CLOUDSYNC_AUTOGEN_FOPS_H
 
-#include "xlator.h"
-#include "cloudsync.h"
 #include "cloudsync-common.h"
+#include "cloudsync.h"
+#include "xlator.h"
 
 #pragma generate
 

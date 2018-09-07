@@ -10,8 +10,7 @@
 #ifndef _GLUSTERD_QUOTA_
 #define _GLUSTERD_QUOTA_
 
-int
-glusterd_store_quota_config (glusterd_volinfo_t *volinfo, char *path,
-                             char *gfid_str, int opcode, char **op_errstr);
+int glusterd_store_quota_config(glusterd_volinfo_t *volinfo, char *path,
+                                char *gfid_str, int opcode, char **op_errstr);
 
 #endif

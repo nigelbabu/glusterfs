@@ -15,7 +15,6 @@
 
 #include "glusterd-conn-mgmt.h"
 
-glusterd_svc_t *
-glusterd_conn_get_svc_object (glusterd_conn_t *conn);
+glusterd_svc_t *glusterd_conn_get_svc_object(glusterd_conn_t *conn);
 
 #endif

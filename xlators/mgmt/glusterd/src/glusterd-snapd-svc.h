@@ -15,28 +15,22 @@
 
 typedef struct glusterd_snapdsvc_ glusterd_snapdsvc_t;
 
-struct glusterd_snapdsvc_{
-        glusterd_svc_t     svc;
-        int                port;
-        gf_store_handle_t *handle;
+struct glusterd_snapdsvc_ {
+  glusterd_svc_t svc;
+  int port;
+  gf_store_handle_t *handle;
 };
 
-void
-glusterd_snapdsvc_build (glusterd_svc_t *svc);
+void glusterd_snapdsvc_build(glusterd_svc_t *svc);
 
-int
-glusterd_snapdsvc_init (void *data);
+int glusterd_snapdsvc_init(void *data);
 
-int
-glusterd_snapdsvc_manager (glusterd_svc_t *svc, void *data, int flags);
+int glusterd_snapdsvc_manager(glusterd_svc_t *svc, void *data, int flags);
 
-int
-glusterd_snapdsvc_start (glusterd_svc_t *svc, int flags);
+int glusterd_snapdsvc_start(glusterd_svc_t *svc, int flags);
 
-int
-glusterd_snapdsvc_restart ();
+int glusterd_snapdsvc_restart();
 
-int
-glusterd_snapdsvc_rpc_notify (glusterd_conn_t *conn, rpc_clnt_event_t event);
+int glusterd_snapdsvc_rpc_notify(glusterd_conn_t *conn, rpc_clnt_event_t event);
 
 #endif

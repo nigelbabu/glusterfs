@@ -15,18 +15,17 @@
 
 #ifndef LLONG_MAX
 #define LLONG_MAX __LONG_LONG_MAX__ /* compat with old gcc */
-#endif /* LLONG_MAX */
-
+#endif                              /* LLONG_MAX */
 
 #ifdef GF_LINUX_HOST_OS
 
 #define UNIX_PATH_MAX 108
 
-#include <sys/un.h>
-#include <linux/limits.h>
-#include <sys/xattr.h>
-#include <linux/xattr.h>
 #include <endian.h>
+#include <linux/limits.h>
+#include <linux/xattr.h>
+#include <sys/un.h>
+#include <sys/xattr.h>
 #ifdef HAVE_LINUX_FALLOC_H
 #include <linux/falloc.h>
 #endif
@@ -38,7 +37,7 @@
 #ifndef _PATH_UMOUNT
 #define _PATH_UMOUNT "/bin/umount"
 #endif
-#define GF_XATTR_NAME_MAX       XATTR_NAME_MAX
+#define GF_XATTR_NAME_MAX XATTR_NAME_MAX
 #endif /* GF_LINUX_HOST_OS */
 
 #ifdef HAVE_XATTR_H
@@ -51,19 +50,19 @@
  */
 
 #ifndef FALLOC_FL_KEEP_SIZE
-#define FALLOC_FL_KEEP_SIZE     0x01 /* default is extend size */
+#define FALLOC_FL_KEEP_SIZE 0x01 /* default is extend size */
 #endif
 #ifndef FALLOC_FL_PUNCH_HOLE
-#define FALLOC_FL_PUNCH_HOLE    0x02 /* de-allocates range */
+#define FALLOC_FL_PUNCH_HOLE 0x02 /* de-allocates range */
 #endif
 #ifndef FALLOC_FL_ZERO_RANGE
-#define FALLOC_FL_ZERO_RANGE    0x10 /* zeroes out range */
+#define FALLOC_FL_ZERO_RANGE 0x10 /* zeroes out range */
 #endif
 #ifndef FALLOC_FL_COLLAPSE_RANGE
-#define FALLOC_FL_COLLAPSE_RANGE  0x08 /* reduces the size */
+#define FALLOC_FL_COLLAPSE_RANGE 0x08 /* reduces the size */
 #endif
 #ifndef FALLOC_FL_INSERT_RANGE
-#define FALLOC_FL_INSERT_RANGE  0x20 /* expands the size */
+#define FALLOC_FL_INSERT_RANGE 0x20 /* expands the size */
 #endif
 
 #ifndef HAVE_LLISTXATTR
@@ -72,17 +71,17 @@
  * 'llistxattr()' system calls.
  */
 
-#define lremovexattr(path,key) removexattr(path,key)
-#define llistxattr(path,key,size)  listxattr(path,key,size)
-#define lgetxattr(path, key, value, size) getxattr(path,key,value,size)
-#define lsetxattr(path,key,value,size,flags) setxattr(path,key,value,size,flags)
+#define lremovexattr(path, key) removexattr(path, key)
+#define llistxattr(path, key, size) listxattr(path, key, size)
+#define lgetxattr(path, key, value, size) getxattr(path, key, value, size)
+#define lsetxattr(path, key, value, size, flags)                               \
+  setxattr(path, key, value, size, flags)
 
 #endif /* HAVE_LLISTXATTR */
 
-
 #ifdef GF_DARWIN_HOST_OS
-#include <machine/endian.h>
 #include <libkern/OSByteOrder.h>
+#include <machine/endian.h>
 #include <sys/xattr.h>
 
 #define htobe16(x) OSSwapHostToBigInt16(x)
@@ -102,16 +101,15 @@
 
 #endif
 
-
 #ifdef GF_BSD_HOST_OS
 /* In case of FreeBSD and NetBSD */
 
 #define UNIX_PATH_MAX 104
 #include <sys/types.h>
 
-#include <sys/un.h>
 #include <sys/endian.h>
 #include <sys/extattr.h>
+#include <sys/un.h>
 #ifdef HAVE_SYS_XATTR_H
 #include <sys/xattr.h>
 #endif /* HAVE_SYS_XATTR_H */
@@ -121,13 +119,12 @@
 
 #ifndef XATTR_CREATE
 enum {
-        ATTR_CREATE = 1,
+  ATTR_CREATE = 1,
 #define XATTR_CREATE ATTR_CREATE
-        ATTR_REPLACE = 2
+  ATTR_REPLACE = 2
 #define XATTR_REPLACE ATTR_REPLACE
 };
 #endif /* XATTR_CREATE */
-
 
 #ifndef sighandler_t
 #define sighandler_t sig_t
@@ -136,16 +133,16 @@ enum {
 #ifdef __FreeBSD__
 #undef ino_t
 #define ino_t uint64_t
-#include <sys/types.h>
 #include <sys/extattr.h>
+#include <sys/types.h>
 /* Using NAME_MAX since EXTATTR_MAXNAMELEN is inside a preprocessor conditional
  * for the kernel
  */
-#define GF_XATTR_NAME_MAX       NAME_MAX
+#define GF_XATTR_NAME_MAX NAME_MAX
 #endif /* __FreeBSD__ */
 
 #ifdef __NetBSD__
-#define GF_XATTR_NAME_MAX       XATTR_NAME_MAX
+#define GF_XATTR_NAME_MAX XATTR_NAME_MAX
 #endif
 
 #ifndef ino64_t
@@ -169,25 +166,25 @@ enum {
 #endif
 
 /* Posix dictates NAME_MAX to be used */
-# ifndef NAME_MAX
-#  ifdef  MAXNAMLEN
-#   define NAME_MAX MAXNAMLEN
-#  else
-#   define NAME_MAX 255
-#  endif
-# endif
+#ifndef NAME_MAX
+#ifdef MAXNAMLEN
+#define NAME_MAX MAXNAMLEN
+#else
+#define NAME_MAX 255
+#endif
+#endif
 
-#define F_GETLK64       F_GETLK
-#define F_SETLK64       F_SETLK
-#define F_SETLKW64      F_SETLKW
-#define FALLOC_FL_KEEP_SIZE     0x01 /* default is extend size */
-#define FALLOC_FL_PUNCH_HOLE    0x02 /* de-allocates range */
-#define FALLOC_FL_ZERO_RANGE    0x10 /* zeroes out range */
-#define FALLOC_FL_INSERT_RANGE  0x20 /* Expands the size */
+#define F_GETLK64 F_GETLK
+#define F_SETLK64 F_SETLK
+#define F_SETLKW64 F_SETLKW
+#define FALLOC_FL_KEEP_SIZE 0x01      /* default is extend size */
+#define FALLOC_FL_PUNCH_HOLE 0x02     /* de-allocates range */
+#define FALLOC_FL_ZERO_RANGE 0x10     /* zeroes out range */
+#define FALLOC_FL_INSERT_RANGE 0x20   /* Expands the size */
 #define FALLOC_FL_COLLAPSE_RANGE 0x08 /* Reduces the size */
 
 #ifndef _PATH_UMOUNT
-  #define _PATH_UMOUNT "/sbin/umount"
+#define _PATH_UMOUNT "/sbin/umount"
 #endif
 
 void gf_extattr_list_reshape(char *list, ssize_t size);
@@ -195,8 +192,8 @@ void gf_extattr_list_reshape(char *list, ssize_t size);
 #endif /* GF_BSD_HOST_OS */
 
 #ifdef GF_DARWIN_HOST_OS
-#include <machine/endian.h>
 #include <libkern/OSByteOrder.h>
+#include <machine/endian.h>
 
 #define htobe16(x) OSSwapHostToBigInt16(x)
 #define htole16(x) OSSwapHostToLittleInt16(x)
@@ -220,20 +217,18 @@ void gf_extattr_list_reshape(char *list, ssize_t size);
 #endif
 #include <sys/types.h>
 
+#include <limits.h>
 #include <sys/un.h>
 #include <sys/xattr.h>
-#include <limits.h>
 
 #include <libgen.h>
 
-
 #if __DARWIN_64_BIT_INO_T == 0
-#    error '64 bit ino_t is must for GlusterFS to work, Compile with "CFLAGS=-D__DARWIN_64_BIT_INO_T"'
+#error '64 bit ino_t is must for GlusterFS to work, Compile with "CFLAGS=-D__DARWIN_64_BIT_INO_T"'
 #endif /* __DARWIN_64_BIT_INO_T */
 
-
 #if __DARWIN_64_BIT_INO_T == 0
-#    error '64 bit ino_t is must for GlusterFS to work, Compile with "CFLAGS=-D__DARWIN_64_BIT_INO_T"'
+#error '64 bit ino_t is must for GlusterFS to work, Compile with "CFLAGS=-D__DARWIN_64_BIT_INO_T"'
 #endif /* __DARWIN_64_BIT_INO_T */
 
 #ifndef sighandler_t
@@ -253,24 +248,24 @@ void gf_extattr_list_reshape(char *list, ssize_t size);
 #endif
 
 /* Posix dictates NAME_MAX to be used */
-# ifndef NAME_MAX
-#  ifdef  MAXNAMLEN
-#   define NAME_MAX MAXNAMLEN
-#  else
-#   define NAME_MAX 255
-#  endif
-# endif
+#ifndef NAME_MAX
+#ifdef MAXNAMLEN
+#define NAME_MAX MAXNAMLEN
+#else
+#define NAME_MAX 255
+#endif
+#endif
 
-#define F_GETLK64       F_GETLK
-#define F_SETLK64       F_SETLK
-#define F_SETLKW64      F_SETLKW
+#define F_GETLK64 F_GETLK
+#define F_SETLK64 F_SETLK
+#define F_SETLKW64 F_SETLKW
 
 #ifndef FTW_CONTINUE
-  #define FTW_CONTINUE 0
+#define FTW_CONTINUE 0
 #endif
 
 #ifndef _PATH_UMOUNT
-  #define _PATH_UMOUNT "/sbin/umount"
+#define _PATH_UMOUNT "/sbin/umount"
 #endif
 #endif /* GF_DARWIN_HOST_OS */
 
@@ -279,119 +274,119 @@ void gf_extattr_list_reshape(char *list, ssize_t size);
 #define UNIX_PATH_MAX 108
 #define EUCLEAN 117
 
-#include <sys/un.h>
-#include <limits.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <sys/fcntl.h>
 #include <libgen.h>
+#include <limits.h>
+#include <sys/fcntl.h>
 #include <sys/mkdev.h>
+#include <sys/stat.h>
+#include <sys/un.h>
+#include <unistd.h>
 
 #ifndef lchmod
 #define lchmod chmod
 #endif
 
-#define lgetxattr(path, key, value, size) solaris_getxattr(path,key,value,size)
+#define lgetxattr(path, key, value, size)                                      \
+  solaris_getxattr(path, key, value, size)
 enum {
-        ATTR_CREATE = 1,
+  ATTR_CREATE = 1,
 #define XATTR_CREATE ATTR_CREATE
-        ATTR_REPLACE = 2
+  ATTR_REPLACE = 2
 #define XATTR_REPLACE ATTR_REPLACE
 };
 
 /* This patch is not present in Solaris 10 and before */
 #ifndef dirfd
-#define dirfd(dirp)   ((dirp)->dd_fd)
+#define dirfd(dirp) ((dirp)->dd_fd)
 #endif
 
 /* Posix dictates NAME_MAX to be used */
-# ifndef NAME_MAX
-#  ifdef  MAXNAMLEN
-#   define NAME_MAX MAXNAMLEN
-#  else
-#   define NAME_MAX 255
-#  endif
-# endif
+#ifndef NAME_MAX
+#ifdef MAXNAMLEN
+#define NAME_MAX MAXNAMLEN
+#else
+#define NAME_MAX 255
+#endif
+#endif
 
 #include <netinet/in.h>
 #ifndef s6_addr16
-#define S6_ADDR16(x)    ((uint16_t*) ((char*)&(x).s6_addr))
+#define S6_ADDR16(x) ((uint16_t *)((char *)&(x).s6_addr))
 #endif
 #ifndef s6_addr32
-#define s6_addr32       _S6_un._S6_u32
+#define s6_addr32 _S6_un._S6_u32
 #endif
 
-#define lutimes(filename,times)              utimes(filename,times)
+#define lutimes(filename, times) utimes(filename, times)
 
 #ifndef SEEK_SET
 #define SEEK_SET 0
 #endif
 
 enum {
-        DT_UNKNOWN = 0,
-# define DT_UNKNOWN	DT_UNKNOWN
-        DT_FIFO = 1,
-# define DT_FIFO	DT_FIFO
-        DT_CHR = 2,
-# define DT_CHR		DT_CHR
-        DT_DIR = 4,
-# define DT_DIR		DT_DIR
-        DT_BLK = 6,
-# define DT_BLK		DT_BLK
-        DT_REG = 8,
-# define DT_REG		DT_REG
-        DT_LNK = 10,
-# define DT_LNK		DT_LNK
-        DT_SOCK = 12,
-# define DT_SOCK	DT_SOCK
-        DT_WHT = 14
-# define DT_WHT		DT_WHT
+  DT_UNKNOWN = 0,
+#define DT_UNKNOWN DT_UNKNOWN
+  DT_FIFO = 1,
+#define DT_FIFO DT_FIFO
+  DT_CHR = 2,
+#define DT_CHR DT_CHR
+  DT_DIR = 4,
+#define DT_DIR DT_DIR
+  DT_BLK = 6,
+#define DT_BLK DT_BLK
+  DT_REG = 8,
+#define DT_REG DT_REG
+  DT_LNK = 10,
+#define DT_LNK DT_LNK
+  DT_SOCK = 12,
+#define DT_SOCK DT_SOCK
+  DT_WHT = 14
+#define DT_WHT DT_WHT
 };
 
 #ifndef _PATH_MOUNTED
- #define _PATH_MOUNTED "/etc/mtab"
+#define _PATH_MOUNTED "/etc/mtab"
 #endif
 #ifndef _PATH_UMOUNT
- #define _PATH_UMOUNT "/sbin/umount"
+#define _PATH_UMOUNT "/sbin/umount"
 #endif
 
 #ifndef O_ASYNC
-  #ifdef FASYNC
-    #define O_ASYNC FASYNC
-  #else
-    #define O_ASYNC 0
-  #endif
+#ifdef FASYNC
+#define O_ASYNC FASYNC
+#else
+#define O_ASYNC 0
+#endif
 #endif
 
 #ifndef FTW_CONTINUE
-  #define FTW_CONTINUE 0
+#define FTW_CONTINUE 0
 #endif
 
 int asprintf(char **string_ptr, const char *format, ...);
 
-int vasprintf (char **result, const char *format, va_list args);
-char* strsep(char** str, const char* delims);
+int vasprintf(char **result, const char *format, va_list args);
+char *strsep(char **str, const char *delims);
 int solaris_listxattr(const char *path, char *list, size_t size);
-int solaris_removexattr(const char *path, const char* key);
-int solaris_getxattr(const char *path, const char* key,
-                     char *value, size_t size);
-int solaris_setxattr(const char *path, const char* key, const char *value,
+int solaris_removexattr(const char *path, const char *key);
+int solaris_getxattr(const char *path, const char *key, char *value,
+                     size_t size);
+int solaris_setxattr(const char *path, const char *key, const char *value,
                      size_t size, int flags);
-int solaris_fgetxattr(int fd, const char* key,
-                      char *value, size_t size);
-int solaris_fsetxattr(int fd, const char* key, const char *value,
-                      size_t size, int flags);
+int solaris_fgetxattr(int fd, const char *key, char *value, size_t size);
+int solaris_fsetxattr(int fd, const char *key, const char *value, size_t size,
+                      int flags);
 int solaris_flistxattr(int fd, char *list, size_t size);
 
-int solaris_rename (const char *oldpath, const char *newpath);
+int solaris_rename(const char *oldpath, const char *newpath);
 
-int solaris_unlink (const char *pathname);
+int solaris_unlink(const char *pathname);
 
-char *mkdtemp (char *temp);
+char *mkdtemp(char *temp);
 
 #define GF_SOLARIS_XATTR_DIR ".glusterfs_xattr_inode"
 
-int solaris_xattr_resolve_path (const char *real_path, char **path);
+int solaris_xattr_resolve_path(const char *real_path, char **path);
 
 #endif /* GF_SOLARIS_HOST_OS */
 
@@ -406,39 +401,36 @@ size_t strnlen(const char *string, size_t maxlen);
 #endif /* STRNLEN */
 
 #ifndef strdupa
-#define strdupa(s)                                                      \
-        (__extension__                                                  \
-         ({                                                             \
-                 __const char *__old = (s);                             \
-                 size_t __len = strlen (__old) + 1;                     \
-                 char *__new = (char *) __builtin_alloca (__len);       \
-                 (char *) memcpy (__new, __old, __len);                 \
-         }))
+#define strdupa(s)                                                             \
+  (__extension__({                                                             \
+    __const char *__old = (s);                                                 \
+    size_t __len = strlen(__old) + 1;                                          \
+    char *__new = (char *)__builtin_alloca(__len);                             \
+    (char *)memcpy(__new, __old, __len);                                       \
+  }))
 #endif
 
-#define GF_DIR_ALIGN(x) (((x) + sizeof (uint64_t) - 1) & ~(sizeof (uint64_t) - 1))
+#define GF_DIR_ALIGN(x) (((x) + sizeof(uint64_t) - 1) & ~(sizeof(uint64_t) - 1))
 
-#include <sys/types.h>
 #include <dirent.h>
+#include <sys/types.h>
 
-static inline int32_t
-dirent_size (struct dirent *entry)
-{
-        int32_t size = -1;
+static inline int32_t dirent_size(struct dirent *entry) {
+  int32_t size = -1;
 
 #ifdef GF_BSD_HOST_OS
-        size = GF_DIR_ALIGN (24 /* FIX MEEEE!!! */ + entry->d_namlen);
+  size = GF_DIR_ALIGN(24 /* FIX MEEEE!!! */ + entry->d_namlen);
 #endif
 #ifdef GF_DARWIN_HOST_OS
-        size = GF_DIR_ALIGN (24 /* FIX MEEEE!!! */ + entry->d_namlen);
+  size = GF_DIR_ALIGN(24 /* FIX MEEEE!!! */ + entry->d_namlen);
 #endif
 #ifdef GF_LINUX_HOST_OS
-        size = GF_DIR_ALIGN (24 /* FIX MEEEE!!! */ + entry->d_reclen);
+  size = GF_DIR_ALIGN(24 /* FIX MEEEE!!! */ + entry->d_reclen);
 #endif
 #ifdef GF_SOLARIS_HOST_OS
-        size = GF_DIR_ALIGN (24 /* FIX MEEEE!!! */ + entry->d_reclen);
+  size = GF_DIR_ALIGN(24 /* FIX MEEEE!!! */ + entry->d_reclen);
 #endif
-        return size;
+  return size;
 }
 
 #ifdef THREAD_UNSAFE_BASENAME
@@ -483,9 +475,15 @@ char *dirname_r(char *path);
 #define ST_ATIM_NSEC(stbuf) (0)
 #define ST_CTIM_NSEC(stbuf) (0)
 #define ST_MTIM_NSEC(stbuf) (0)
-#define ST_ATIM_NSEC_SET(stbuf, val) do { } while (0);
-#define ST_MTIM_NSEC_SET(stbuf, val) do { } while (0);
-#define ST_CTIM_NSEC_SET(stbuf, val) do { } while (0);
+#define ST_ATIM_NSEC_SET(stbuf, val)                                           \
+  do {                                                                         \
+  } while (0);
+#define ST_MTIM_NSEC_SET(stbuf, val)                                           \
+  do {                                                                         \
+  } while (0);
+#define ST_CTIM_NSEC_SET(stbuf, val)                                           \
+  do {                                                                         \
+  } while (0);
 #endif
 
 #ifdef GF_BSD_HOST_OS
@@ -494,8 +492,8 @@ char *dirname_r(char *path);
 
 #if defined(__GNUC__) && !defined(RELAX_POISONING)
 /* Use run API, see run.h */
+#include <stdio.h>  /* popen() */
 #include <stdlib.h> /* system(), mkostemp() */
-#include <stdio.h> /* popen() */
 #pragma GCC poison system mkostemp popen
 #endif
 

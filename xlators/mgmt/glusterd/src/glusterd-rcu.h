@@ -12,10 +12,10 @@
 #define _GLUSTERD_RCU_H
 
 #include <urcu-bp.h>
-#include <urcu/rculist.h>
-#include <urcu/compiler.h>
-#include <urcu/uatomic.h>
 #include <urcu-call-rcu.h>
+#include <urcu/compiler.h>
+#include <urcu/rculist.h>
+#include <urcu/uatomic.h>
 
 #ifdef URCU_OLD
 #include "rculist-extra.h"
@@ -29,8 +29,8 @@
  * Use this in place of struct rcu_head when embedding into another struct
  */
 typedef struct glusterd_rcu_head_ {
-        struct rcu_head head;
-        xlator_t *this;
+  struct rcu_head head;
+  xlator_t *this;
 } gd_rcu_head;
 
 #endif /* _GLUSTERD_RCU_H */

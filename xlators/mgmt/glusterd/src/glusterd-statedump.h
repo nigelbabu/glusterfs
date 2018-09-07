@@ -13,6 +13,5 @@
 
 #include "xlator.h"
 
-int
-glusterd_dump_priv (xlator_t *this);
+int glusterd_dump_priv(xlator_t *this);
 #endif

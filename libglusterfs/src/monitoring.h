@@ -15,7 +15,6 @@
 
 #define GLUSTER_METRICS_DIR "/var/run/gluster/metrics"
 
-char *
-gf_monitor_metrics (glusterfs_ctx_t *ctx);
+char *gf_monitor_metrics(glusterfs_ctx_t *ctx);
 
 #endif /* __MONITORING_H__ */

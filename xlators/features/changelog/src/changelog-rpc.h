@@ -11,21 +11,19 @@
 #ifndef __CHANGELOG_RPC_H
 #define __CHANGELOG_RPC_H
 
-#include "xlator.h"
 #include "changelog-helpers.h"
+#include "xlator.h"
 
 /* one time */
-#include "socket.h"
 #include "changelog-rpc-common.h"
+#include "socket.h"
 
-#define CHANGELOG_RPC_PROGNAME  "GlusterFS Changelog"
+#define CHANGELOG_RPC_PROGNAME "GlusterFS Changelog"
 
-rpcsvc_t *
-changelog_init_rpc_listener (xlator_t *, changelog_priv_t *, rbuf_t *, int);
+rpcsvc_t *changelog_init_rpc_listener(xlator_t *, changelog_priv_t *, rbuf_t *,
+                                      int);
 
-void
-changelog_destroy_rpc_listner (xlator_t *, changelog_priv_t *);
+void changelog_destroy_rpc_listner(xlator_t *, changelog_priv_t *);
 
-int
-changelog_cleanup_rpc_threads (xlator_t *this, changelog_priv_t *priv);
+int changelog_cleanup_rpc_threads(xlator_t *this, changelog_priv_t *priv);
 #endif
